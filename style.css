@@ -1,8 +1,26 @@
 body{
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 10%;
+    margin-right: 10%;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#body {
+    display: grid;
+    grid-template-columns: 50% auto;
+    grid-template-areas:'titulo titulo'
+                        'error error' 
+                        'form tabla'
+                        'huesped huesped'
+                         
+}
+
+h1{
     text-align: center;
+    grid-area: titulo;
+}
+
+h2{
+    grid-area: huesped;
 }
 
 input{
@@ -17,13 +35,6 @@ table,tr,th,td{
     border: 1px solid black;
 }
 
-table{
-    margin-top: 10px;;
-    margin-left: 22%;
-    border-collapse: collapse;
-    background-color: beige;
-}
-
 th,td{
     padding: 10px;
 }
@@ -32,19 +43,29 @@ th{
     background-color: darkgray;
 }
 
+table{
+    margin-top: 10px;
+    border-collapse: collapse;
+    background-color: beige;
+    grid-area: tabla;
+}
+
+#body{
+    background-color: bisque;
+    padding: 10px;
+}
+
+#form{
+    grid-area: form;
+}
+
+label{
+    display: inline-block;
+    width: 150px;
+  }
 
 #errores{
-    margin-left: 20%;
     text-align: left;
     color: red;
-    align-self: center;
-}
-
-#plazoFijo{
-    background-color: greenyellow;
-    align-self: center;
-}
-
-#plazoFijoTable{
-    align-self: center;
+    grid-area: error;
 }

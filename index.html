@@ -5,37 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
-    <title>Parcial 1</title>
+    <title>Phoenix Hotel</title>
 </head>
 <body>
-    <h1>TITULO</h1>
+<div id="body">
+    <h1>Registro de Reservas - Hotel Phoenix</h1>
+
+    <div id="tabla">
+        <table>
+            <tr>
+                <th>Cantidad de Personas</th>
+                <th>Estándar</th>
+                <th>Premium</th>
+            </tr>
+            <tr>
+                <td>1-2</td>
+                <td>20000</td>
+                <td>35000</td>
+            </tr>
+            <tr>
+                <td>3-4</td>
+                <td>30000</td>
+                <td>52000</td>
+            </tr>
+            <tr>
+                <td>5-7</td>
+                <td>35000</td>
+                <td>61000</td>
+            </tr>
+        </table>
+
+    </div><br>
+
     <div id="errores">
 
+    </div><br>
+
+    <div id="form">
+        <form class="form">
+            <label>Nombre huésped</label><input type="text" id="txtHuesped" placeholder="Nombre"><br>
+            <label>Cantidad de adultos</label><input type="text" id="txtAdultos" placeholder="Adultos"><br>
+            <label>Tipo de habitación</label>
+            <input type="radio" value="Habitación Estándar" name="tipoHabitacion" id="estandar" checked>Estándar
+            <input type="radio" value="Habitación Premium" name="tipoHabitacion" id="premium">Premium<br>
+            <label>Cantidad de días</label><input type="text" id="txtDias" placeholder="Dias"><br>
+            <input type="submit" id="btnReservar" value="Registrar huésped">
+        </form>
     </div>
-    <br>
-    <form action="">
-        <label><input type="text" id="txtNombre" placeholder="Nombre"></label><br>
-        <label><input type="text" id="txtApellido" placeholder="Apellido"></label><br>
-        <label><input type="text" id="txtMonto" placeholder=""></label><br>
-        <label></label><input type="text" id="" placeholder=""><br>
-        <label><input type="submit" id="btnCalcular" value="Calcular"></label><br><br>
-        <label>¿?</label><br>
-        <label>
-            <input type="radio" value="si" name="reinversion" id="" checked>
-            Sí
-        </label>
-        <label>
-            <input type="radio" value="no" name="reinversion" id="">
-            No
-        </label>
-    </form>
     
-    <div id="">
+    <h2>Huéspedes</h2>
+    <div id="infoReserva">
 
     </div>
-
-    <div id="table">
-
-    </div>
+</div>
 </body>
 </html>
