@@ -5,12 +5,14 @@ body{
 }
 
 #body {
+    border-radius: 20px;
     display: grid;
-    grid-template-columns: 50% auto;
-    grid-template-areas:'titulo titulo'
-                        'error error' 
-                        'form tabla'
-                        'huesped huesped'
+    grid-template-columns: auto auto auto;
+    grid-template-areas:'titulo titulo titulo'
+                        'error error error' 
+                        'form tabla tabla'
+                        'huesped huesped huesped'
+                        'info info info'
                          
 }
 
@@ -24,7 +26,9 @@ h2{
 }
 
 input{
-    margin: 5px;
+    padding: 2px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 div{
@@ -44,7 +48,7 @@ th{
 }
 
 table{
-    margin-top: 10px;
+    text-align: center;
     border-collapse: collapse;
     background-color: beige;
     grid-area: tabla;
@@ -56,6 +60,10 @@ table{
 }
 
 #form{
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+    background-color: lightsalmon;
     grid-area: form;
 }
 
@@ -65,7 +73,12 @@ label{
   }
 
 #errores{
+    margin-bottom: 20px;
     text-align: left;
     color: red;
     grid-area: error;
+}
+
+#infoReserva{
+    grid-area: info;
 }

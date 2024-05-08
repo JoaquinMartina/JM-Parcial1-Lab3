@@ -1,5 +1,8 @@
 window.onload = iniciar;
 
+let listadoReservas = [];
+let reserva = {};
+
 function iniciar(){
     let btnCalcular = document.getElementById("btnReservar");
     btnCalcular.addEventListener("click", clickReservar);   
@@ -9,6 +12,7 @@ function clickReservar(evento){
     evento.preventDefault();
 
     document.getElementById("errores").innerHTML="";
+    document.getElementById("infoReserva").innerHTML="";
 
     const huesped = document.getElementById("txtHuesped").value;
     const adultos = parseInt(document.getElementById("txtAdultos").value);
@@ -22,6 +26,7 @@ function clickReservar(evento){
 
     if(mensajeError.length !== 0){
         mostrarError(mensajeError);
+        mostrarReservaTabla();
         return;
     }
 
@@ -60,6 +65,10 @@ function validarDatos(huesped, adultos, dias){
 
     if(dias<1){
         mensajeError.push("Debe reservar al menos 1 día");
+    }
+
+    if(adultos<=0){
+        mensajeError.push("Debe reservar al menos para 1 adulto");
     }
 
     if(adultos>7){
@@ -110,24 +119,83 @@ function tarifaPremium(adultos){
     }
 }
 
-function reservarEstandar(huesped, adultos, dias, estandar){
-    let tipoHabitacion = estandar;
+function reservarEstandar(huesped, adultos, dias, tipoHabitacion){
     let tarifa = tarifaEstandar(adultos);
     let precioFinal = dias*tarifa;
-    mostrarReserva(huesped, adultos, dias, precioFinal, tipoHabitacion);
+    registrarReserva(huesped, adultos, dias, tipoHabitacion, precioFinal);
+    mostrarReservaTabla();
 }
 
-function reservarPremium(huesped, adultos, dias, premium){
-    let tipoHabitacion = premium;
+function reservarPremium(huesped, adultos, dias, tipoHabitacion){
     let tarifa = tarifaPremium(adultos);
     let precioFinal = dias*tarifa;
-    mostrarReserva(huesped, adultos, dias, precioFinal, tipoHabitacion);
+    registrarReserva(huesped, adultos, dias, tipoHabitacion, precioFinal);
+    mostrarReservaTabla();
 }
 
-function mostrarReserva(huesped, adultos, dias, precioFinal, tipoHabitacion){
-    const itemReserva = document.createElement("li");
-    let reserva = document.createTextNode(`${huesped} - ${adultos} adultos - ${dias} dias - ${tipoHabitacion} - Total:$ ${precioFinal}`);
-    
-    itemReserva.appendChild(reserva);
-    document.getElementById("infoReserva").appendChild(itemReserva);
+function registrarReserva(huesped, adultos, dias, tipoHabitacion, precioFinal){
+    reserva = {
+        "huesped": huesped,
+        "adultos": adultos, 
+        "dias": dias,
+        "tipoHabitacion": tipoHabitacion,
+        "precioFinal": precioFinal
+    }
+
+    listadoReservas.push(reserva);
+}
+
+function mostrarReservaTabla(){
+    const tabla = document.createElement("table");
+    const filaCabecera = document.createElement("tr");
+    const cabeceraHuesped = document.createElement("th");
+    const cabeceraAdultos = document.createElement("th");
+    const cabeceraDias = document.createElement("th");
+    const cabeceraHabitacion = document.createElement("th");
+    const cabeceraPrecioTotal = document.createElement("th");
+    let cabHuesped = document.createTextNode("Nombre");
+    let cabAdultos = document.createTextNode("Adultos");
+    let cabDias = document.createTextNode("Días");
+    let cabHabitacion = document.createTextNode("Tipo Habitación");
+    let cabPrecioTotal = document.createTextNode("Precio Total");
+
+    cabeceraHuesped.appendChild(cabHuesped);
+    cabeceraAdultos.appendChild(cabAdultos);
+    cabeceraDias.appendChild(cabDias);
+    cabeceraHabitacion.appendChild(cabHabitacion);
+    cabeceraPrecioTotal.appendChild(cabPrecioTotal);
+    filaCabecera.appendChild(cabeceraHuesped);
+    filaCabecera.appendChild(cabeceraAdultos);
+    filaCabecera.appendChild(cabeceraDias);
+    filaCabecera.appendChild(cabeceraHabitacion);
+    filaCabecera.appendChild(cabeceraPrecioTotal);
+    tabla.appendChild(filaCabecera);
+
+    for(reserva of listadoReservas){
+        const filaReserva = document.createElement("tr");
+        const celdaHuesped = document.createElement("td");
+        const celdaAdultos = document.createElement("td");
+        const celdaDias = document.createElement("td");
+        const celdaHabitacion = document.createElement("td");
+        const celdaPrecioTotal = document.createElement("td");
+        let celHuesped = document.createTextNode(reserva.huesped);
+        let celAdultos = document.createTextNode(reserva.adultos);
+        let celDias = document.createTextNode(reserva.dias);
+        let celHabitacion = document.createTextNode(reserva.tipoHabitacion);
+        let celPrecioTotal = document.createTextNode(`$${reserva.precioFinal}`);
+
+        celdaHuesped.appendChild(celHuesped);
+        celdaAdultos.appendChild(celAdultos);
+        celdaDias.appendChild(celDias);
+        celdaHabitacion.appendChild(celHabitacion);
+        celdaPrecioTotal.appendChild(celPrecioTotal);
+        filaReserva.appendChild(celdaHuesped);
+        filaReserva.appendChild(celdaAdultos);
+        filaReserva.appendChild(celdaDias);
+        filaReserva.appendChild(celdaHabitacion);
+        filaReserva.appendChild(celdaPrecioTotal);
+        tabla.appendChild(filaReserva);
+    }
+
+    document.getElementById("infoReserva").appendChild(tabla);
 }
