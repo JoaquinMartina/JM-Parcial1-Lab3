@@ -23,7 +23,7 @@ function clickReservar(evento){
     const premium = document.getElementById("premium").value;
 
     const mensajeError = validarDatos(huesped, adultos, dias);
-
+    
     if(mensajeError.length !== 0){
         mostrarError(mensajeError);
         mostrarReservaTabla();
@@ -146,6 +146,10 @@ function registrarReserva(huesped, adultos, dias, tipoHabitacion, precioFinal){
 }
 
 function mostrarReservaTabla(){
+    if (listadoReservas.length == 0){
+        document.getElementById("infoReserva").innerHTML="";
+        return;
+    }
     const tabla = document.createElement("table");
     const filaCabecera = document.createElement("tr");
     const cabeceraHuesped = document.createElement("th");

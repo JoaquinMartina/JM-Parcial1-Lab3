@@ -29,6 +29,7 @@ input{
     padding: 2px;
     border-radius: 5px;
     margin-bottom: 20px;
+    height: 20px;
 }
 
 div{
@@ -64,7 +65,18 @@ table{
     padding: 10px;
     margin-right: 10px;
     background-color: lightsalmon;
+    box-shadow: 10px 5px 5px gray;
     grid-area: form;
+}
+
+#btnReservar{
+    height: 40px;
+    width: 100%;
+    background-color: crimson;
+    color: aliceblue;
+    font-size: large;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 label{
